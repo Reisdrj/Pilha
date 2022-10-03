@@ -2,11 +2,12 @@
 #include <stdio.h>
 
 void main(){
-    int num1, num2;
+    int num1, num2, cont;
     pilha p;
-    scanf("%d %d", &num1, &num2);
-    criarPilha(&p);
+    p.topo = NULL;
+    scanf("%d", &num1);
     inserirElemento(&p, num1);
+    scanf("%d", &num2);
     inserirElemento(&p, num2);
     imprimirPilha(&p);
 }

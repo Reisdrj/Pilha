@@ -2,40 +2,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void criarPilha(pilha p[]){
-    p->prim = NULL;
-    p->seg = NULL;
-}
 
-void inserirElemento( pilha p[], int v){
-    if(p->cont == 0){
-        p->prim = (Apontador) malloc(sizeof(elemento_t));
-        p->prim->num = v;
-        p->prim->baixo = NULL;
-        p->cont++;
+void inserirElemento(pilha *p, int a){
+    Apontador aux = (Apontador) malloc(sizeof(elemento_t));
+    aux->num = a;
+    if (p->topo == NULL)
+    {
+        p->topo = aux;
+        printf("%d inserido\n", a);
+        p->topo->prox = NULL;
     }
-    else{
-        Apontador aux = (Apontador) malloc(sizeof(elemento_t));
-        p->seg = p->prim;
-        p->prim->baixo = p->prim;
-        p->prim = aux;
-        p->prim->num = v;
+    else
+    {   
+        printf("FOI");
+        aux->prox = p->topo;
+        p->topo = aux;
+        printf("%d inserido\n", a);
 
     }
 
 }
 
-void retirarElemento(pilha p[]){
+void imprimirPilha(pilha *p){
+    
+    Apontador aux = p->topo;
+    while(aux != NULL){
+        printf("%d\n", aux->num);
+        aux = aux->prox;
+    };
+    
 
-    Apontador aux = p->prim;
-    p->prim = p->seg;
-    free(aux);
-
-}
-
-void imprimirPilha(pilha p[]){
-    while(p->prim->baixo != NULL){
-        printf("%d\n", p->prim->num);
-        p->prim = p->prim->baixo;
-    }
 }
